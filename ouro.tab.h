@@ -51,9 +51,13 @@ extern int yydebug;
   {
     NUMBER = 258,
     STRING = 259,
-    FUNC = 260,
-    END = 261,
-    BREAK = 262
+    PLUS = 260,
+    MINUS = 261,
+    DIV = 262,
+    MULT = 263,
+    FUNC = 264,
+    END = 265,
+    BREAK = 266
   };
 #endif
 
@@ -68,7 +72,7 @@ union YYSTYPE
 	char* op_val;
 	char* str_val;
 
-#line 72 "ouro.tab.h" /* yacc.c:1921  */
+#line 76 "ouro.tab.h" /* yacc.c:1921  */
 };
 
 typedef union YYSTYPE YYSTYPE;

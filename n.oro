@@ -1,3 +1,4 @@
 show 50
 show "Hello World"
 show "This is my programming language"
+show 50+50-25/3

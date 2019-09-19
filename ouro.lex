@@ -11,12 +11,18 @@ string	\"(\\.|[^"\\])*\"
 operand {number}|{string}
 function show
 
+
 %%
 {number} {yylval.int_val = atoi(yytext); return NUMBER;}
 {function} {yylval.op_val = yytext; return FUNC; }
 {string} {yylval.str_val = yytext; return STRING; }
+[+] {return PLUS;}
+[-] {return MINUS;}
+[*] {return MULT;}
+[/] {return DIV;}
 
 [\n] { yylineno++; return BREAK;}
+
 
 
 %%

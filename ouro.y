@@ -7,7 +7,7 @@ extern FILE *yyin;
 
 int yyerror(char *s);
 
-char* output;
+int stored_int;
 
 %}
 
@@ -21,6 +21,10 @@ char* output;
 
 %token <int_val> NUMBER
 %token <str_val> STRING
+%token PLUS
+%token MINUS
+%token DIV
+%token MULT
 %left FUNC
 %token END
 %token BREAK
@@ -36,7 +40,13 @@ lines: lines line | line
 line:  call BREAK
        ;
 
-call:	FUNC NUMBER { printf("%d\n",$2); }
+value: value PLUS NUMBER { stored_int += $3; }   
+	| value MINUS NUMBER { stored_int -= $3; } 
+	| value MULT NUMBER {stored_int *= $3; } 
+	| value DIV NUMBER {stored_int /= $3; }
+	| NUMBER {stored_int = $1; }  
+
+call:	FUNC value { printf("%d\n",stored_int); }
 	| FUNC STRING { $2[strlen($2) - 1] = 0; $2++; printf("%s\n",$2);}
 	;
 %%
