@@ -9,6 +9,8 @@ int yyerror(char *s);
 
 int stored_int;
 
+char* stored_str;
+
 %}
 
 %union{
@@ -21,6 +23,8 @@ int stored_int;
 
 %token <int_val> NUMBER
 %token <str_val> STRING
+%token <str_val> IDENTIFIER
+%token <str_val> TYPE
 %token PLUS
 %token MINUS
 %token DIV
@@ -38,6 +42,7 @@ lines: lines line | line
        ;
 
 line:  call BREAK
+	| TYPE IDENTIFIER BREAK
        ;
 
 value: value PLUS NUMBER { stored_int += $3; }   
